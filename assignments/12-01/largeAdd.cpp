@@ -55,6 +55,6 @@ int main(void) {
   getline(cin, a);
   cout << "Enter second string:" << endl;
   getline(cin, b);
-
-  cout << largeAdd(a, b) << endl;
+  cout<<"-------------------------"<<endl
+      << a <<" + "<< b <<" = " << largeAdd(a, b) << endl;
 }

@@ -11,23 +11,32 @@
 using namespace std;
 
 int main(){
+    // initialise the essential variables
     int tab=0, n_lines=0;
+
     cout<<"Enter number of lines of code: ";
     cin>>n_lines;
 
     string lines[n_lines+1];
-    // read input code as array of strings
+
+    // read input code as an array of strings
     cout<<"Reading "<<n_lines<<" lines."<<endl<<"Enter your code line-by-line."<<endl;
     
     for(int i=0; i<=n_lines; i++){
         getline(cin,lines[i]);
     }
 
-    // append to each line
+    // maintain the number of tabs on each line by counting the number of opening
+    // braces.
     for(int i=0; i<=n_lines; i++){
-        if(lines[i][0]=='}') tab--;
-        lines[i] = string("    ", tab) + lines[i];
-        if(lines[i].back()=='{') tab++;
+	    // if we find a closing brace, we'll decrement the count of tabs
+        if(lines[i].find('}')!=string::npos) tab--;
+
+	    // append suitable number of tabs to each line
+        for(int temp=0; temp<tab; temp++)
+            lines[i] = "\t" + lines[i];
+	    // if another opening parenthesis is detected then we increment the count of tabs
+        if(lines[i].find('{')!=string::npos) tab++;
     }
 
     // and display indented code

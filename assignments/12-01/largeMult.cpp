@@ -11,9 +11,9 @@ string largeMult(string a, string b){
 
     int carry;
     int product;
-    string array[a.size()+b.size()];
-    fill(array, array+a.size()+b.size(), "!");
-    int k=0;
+    string sum = "0";
+    int trailingZeros=0;
+
     for(int i=b.size()-1; i>-1; i--){
         carry = 0;
         string res="";
@@ -22,13 +22,13 @@ string largeMult(string a, string b){
             carry = product/10;
             res = to_string(product%10)+res;
         }
-        if(carry) res = to_string(carry)+res;
-        array[k++] = res+string("0", k);
-    }
-
-    string sum = "";
-    for(int k=0; array[k]!="!"&&k<(a.size()+b.size()); k++){
-        sum = largeAdd(sum, array[k]);
+        if(carry>0) res = to_string(carry)+res;
+        
+        // now let us add the result to our accumulated partial sum
+        for(int z=0; z<trailingZeros; z++)
+            res = res + "0";
+        sum = largeAdd(sum, res+string("0"));
+        trailingZeros++;
     }
 
     return sum;
@@ -42,6 +42,7 @@ int main(){
     getline(cin, a);
     cout<<"Enter the second number: "<<endl;
     getline(cin, b);
-    
-    cout<<"The product is: "<<largeMult(a, b)<<endl;
+    // cout<<'2'-'0'<<endl;
+    cout<< "-----------------------" << endl
+        <<a<<" * "<<b<<" = "<< largeMult(a, b) << endl;
 }
