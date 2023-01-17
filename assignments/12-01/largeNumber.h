@@ -82,13 +82,12 @@ string largeMult(string a, string b){
         if(carry>0) res = to_string(carry)+res;
         
         // now let us add the result to our accumulated partial sum
-        for(int z=0; z<trailingZeros; z++)
-            res = res + "0";
+        for(int z=0; z<trailingZeros; z++) res = res + "0";
         sum = largeAdd(sum, res+string("0"));
         trailingZeros++;
     }
 
-    return sum;
+    return sum.substr(0, sum.size()-1);
 }
 
 string largeFact(string num){

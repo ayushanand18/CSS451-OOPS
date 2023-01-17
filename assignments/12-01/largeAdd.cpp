@@ -11,43 +11,44 @@
 // achive this.
 #include <iostream>
 #include <string>
+#include "largeNumber.h"
 using namespace std;
 
-string largeAdd(string num1, string num2) {
-  string res = "";
-  int n1 = num1.size(), n2 = num2.size();
-  // first traverse through both the number and add after converting
-  // take a carry also.
-  int carry = 0, sum = 0;
+// string largeAdd(string num1, string num2) {
+//   string res = "";
+//   int n1 = num1.size(), n2 = num2.size();
+//   // first traverse through both the number and add after converting
+//   // take a carry also.
+//   int carry = 0, sum = 0;
 
-  for (int i = 0; i < n1 && i < n2; i++) {
+//   for (int i = 0; i < n1 && i < n2; i++) {
 
-    sum = num1[n1 - i - 1] - '0' + num2[n2 - 1 - i] - '0' + carry;
-    res = to_string(sum % 10) + res;
-    carry = sum / 10;
-  }
-  // check if n1 is still left, this means n2 is done
-  if (res.size() != n1) {
-    for (int i = res.size(); i < n1; i++) {
-      sum = num1[n1 - i - 1] - '0' + carry;
-      res = to_string(sum % 10) + res;
-      carry = sum / 10;
-    }
-  }
-  // check if n2 is still left
-  else if (res.size() != n2) {
-    for (int i = res.size(); i < n2; i++) {
-      sum = num2[n2 - i - 1] - '0' + carry;
-      res = to_string(sum % 10) + res;
-      carry = sum / 10;
-    }
-  }
-  // if some carry is left
-  if (carry)
-    res = to_string(carry) + res;
+//     sum = num1[n1 - i - 1] - '0' + num2[n2 - 1 - i] - '0' + carry;
+//     res = to_string(sum % 10) + res;
+//     carry = sum / 10;
+//   }
+//   // check if n1 is still left, this means n2 is done
+//   if (res.size() != n1) {
+//     for (int i = res.size(); i < n1; i++) {
+//       sum = num1[n1 - i - 1] - '0' + carry;
+//       res = to_string(sum % 10) + res;
+//       carry = sum / 10;
+//     }
+//   }
+//   // check if n2 is still left
+//   else if (res.size() != n2) {
+//     for (int i = res.size(); i < n2; i++) {
+//       sum = num2[n2 - i - 1] - '0' + carry;
+//       res = to_string(sum % 10) + res;
+//       carry = sum / 10;
+//     }
+//   }
+//   // if some carry is left
+//   if (carry)
+//     res = to_string(carry) + res;
 
-  return res;
-}
+//   return res;
+// }
 
 int main(void) {
   string a, b;
